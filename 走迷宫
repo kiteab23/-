@@ -1,0 +1,72 @@
+#include <stdio.h>
+#include <windows.h>
+#include <conio.h>
+char printMap[9][12]={"*#*********",
+					  "***###*###*",
+					  "###**#****#",
+					  "*#**###**#*",
+					  "***********",
+					  "#####*##*##",
+					  "*##*****#*E",
+					  "***#*###**#",
+					  "*#*********"};
+
+
+void pos(int a,int b)
+{
+	COORD pos;
+	pos.X=b;
+	pos.Y=a;	
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),pos);
+}
+
+void progress()
+{	
+	int curx=0,cury=0;
+	char MOVE;
+	while((curx==6&&cury==10)==0)
+	{
+		pos(curx,cury);
+		MOVE=getch();
+		if(MOVE=='s')
+		{
+			if(printMap[curx+1][cury]=='*')
+			{
+				curx++;
+			}
+		}
+		if(MOVE=='w')
+		{
+			if(printMap[curx-1][cury]=='*')
+			{
+				curx--;
+			}
+		}
+		if(MOVE=='a')
+		{
+			if(printMap[curx][cury-1]=='*')
+			{
+				cury--;
+			}
+		}
+		if(MOVE=='d')
+		{
+			if(printMap[curx][cury+1]=='*'||printMap[curx][cury+1]=='E')
+			{
+				cury++;
+			}
+		}
+	}
+	putchar('\n');putchar('\n');putchar('\n');
+}
+
+
+int main()
+{
+	for(int I=0;I<9;I++)
+	{
+		printf("%s\n",printMap[I]);
+	}
+    progress();
+	printf("You win!\n");
+}
