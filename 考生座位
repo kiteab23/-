@@ -1,0 +1,34 @@
+#include"iostream";
+#include"stdio.h"
+#include"string.h"
+ const int maxN=1010;
+using namespace std;
+
+
+struct student
+{
+	long  id;
+	int examSeat;
+}
+student [maxN];
+
+
+int main()
+{
+	int N,M,seat,examSeat;
+	long  id;
+	scanf("%d",&N);
+	for(int i=0;i<N;i++)
+	{
+		scanf("%ld &d %d",&id,&seat,&examSeat);
+			student[seat].examSeat=examSeat;
+		    student[seat].id=id;
+	}
+	scanf("%d",&M);
+	for(int j=0;j<M;j++)
+	{
+		scanf("&d",&seat);
+		printf("%lld %d\n",student[seat].id,student[seat].examSeat);
+	}
+	return 0;
+}
